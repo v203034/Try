@@ -156,7 +156,7 @@
         "lab_name": "Centro de Tecnologia Acadêmica do Instituto de Física (CTA IF)",
         "region": "Educacionales/Gubernamentales",
         "affiliation": "None",
-        "network": "Universidade Federal de Rio Grande do Sul",
+        "network": "Universidade Federal do Rio Grande do Sul",
         "categories": [
             "Educación superior/Gobierno federal"
         ]
@@ -245,7 +245,7 @@
     {
         "lab_name": "Fab Lab Casa Firjan",
         "region": "Civiles",
-        "affiliation": "Firjan/Serviço Nacional de Aprendizagem Industrial (SENAI)",
+        "affiliation": "Federação das Indústrias do Estado do Rio de Janeiro (Firjan)/Serviço Nacional de Aprendizagem Industrial (SENAI)",
         "network": "Federação das Indústrias do Estado do Rio de Janeiro (Firjan)/Serviço Nacional de Aprendizagem Industrial (SENAI)",
         "categories": [
             "Ecosistema empresarial"
@@ -1083,7 +1083,7 @@
         "lab_name": "Firjan SENAI  - Niterói",
         "region": "Civiles",
         "affiliation": "Federação das Indústrias do Estado do Rio de Janeiro (Firjan)/Serviço Nacional de Aprendizagem Industrial (SENAI)",
-        "network": "Federação das Indústrias do Estado do Rio de Janeiro (Firjan)/Servicio Nacional de Aprendizaje Industrial (SENAI)",
+        "network": "Federação das Indústrias do Estado do Rio de Janeiro (Firjan)/Serviço Nacional de Aprendizagem Industrial (SENAI)",
         "categories": [
             "Ecosistema empresarial"
         ]
