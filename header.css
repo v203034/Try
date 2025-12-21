@@ -1,0 +1,213 @@
+/* ===== HEADER STYLES ===== */
+header {
+    background-color: #ffffff;
+    color: black;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border-radius: 15px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-content h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+header h2 {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    color: #4b54a3 !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    margin: 0 !important;
+}
+
+.large-left-btn {
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.large-left-btn img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+.large-left-btn:hover {
+    transform: scale(1.05);
+    background-color: #eee;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+}
+
+.round-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid black;
+    overflow: hidden;
+    background-color: #ffffff;
+    transition: transform 0.2s;
+}
+
+.round-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.round-btn:hover {
+    transform: scale(1.1);
+}
+
+.page-menu {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 10px 10px;
+}
+
+.page-menu a {
+    padding: 8px 14px;
+    border: 2px solid transparent;
+    color: white;
+    text-decoration: none;
+    font-family: inherit;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: 0.15s;
+}
+
+.page-menu a:hover {
+    transform: scale(1.05);
+}
+
+.page-menu a.active {
+    border-color: white;
+}
+
+@media(min-width: 768px) {
+    .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .header-content h1 {
+        font-size: 2rem;
+    }
+}
+
+/* ===== MAIN CONTENT STANDARDIZATION ===== */
+#main-content {
+    margin: 20px auto;
+    max-width: 1200px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column; /* default stacked for mobile */
+    gap: 20px;              /* spacing between containers */
+    align-items: stretch;
+}
+
+/* Mobile adjustments for all pages */
+@media(max-width: 767px){
+    #main-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* ===== PAGE-SPECIFIC OVERRIDES ===== */
+
+/* --- NETWORKS PAGE --- */
+body[data-page="networks"] #main-content {
+    flex-direction: row; /* chart left, filter right */
+    gap: 20px;
+}
+
+body[data-page="networks"] #filter-menu {
+    order: 2;          /* move filter menu to right */
+    flex: 0 0 300px;   /* same width as other filter menus */
+}
+
+/* --- MAPS PAGE --- */
+body[data-page="geolocation"] #main-content {
+    flex-direction: row;
+    gap: 20px;
+}
+
+body[data-page="geolocation"] #map-wrapper {
+    display: flex;
+    flex-direction: column; /* default stacked for mobile */
+    gap: 15px;
+}
+
+@media(min-width: 768px){
+    body[data-page="geolocation"] #map-wrapper {
+        flex-direction: row;
+    }
+
+    body[data-page="geolocation"] #filter-menu {
+        flex: 0 0 300px; /* fixed width */
+    }
+
+    body[data-page="geolocation"] #map-container {
+        flex: 1;          /* map fills remaining space */
+    }
+}
+
+/* --- ECOSYSTEM PAGE --- */
+body[data-page="ecosystem"] #main-content {
+    flex-direction: column; /* stacked on mobile */
+    gap: 15px;
+}
+
+@media(min-width: 768px){
+    body[data-page="ecosystem"] #main-content {
+        flex-direction: row;
+        gap: 20px;
+        align-items: stretch;
+    }
+
+    body[data-page="ecosystem"] #filter-menu {
+        flex: 0 0 280px;
+    }
+
+    body[data-page="ecosystem"] #venn-section {
+        flex: 1;
+    }
+}
+
+/* --- ENSURE TEXT COLORS INSIDE FILTERS/CONTAINERS --- */
+#main-content > div, 
+#filter-menu, 
+#venn-section, 
+#chart-container, 
+#map-wrapper > div {
+    color: white; /* keep white text in all containers */
+}

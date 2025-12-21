@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BR Citizen Labs — Networks</title>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<link rel="stylesheet" href="header.css">
+<script src="header.js" defer></script>
+
+<style>
+body {
+    margin:0;
+    padding:0;
+    font-family:'Courier New', monospace;
+    background:#F4AFAA;
+    color:#222;
+}
+
+/* ===== MAIN LAYOUT ===== */
+#main-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: stretch;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+/* ===== CHART ===== */
+#chart-container {
+    order: 1;
+    flex: 1 1 0;
+    min-width: 300px;
+    max-width: 600px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 15px;
+    padding: 15px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#chart-container h3 {
+    margin:0 0 6px 0;
+    text-align:center;
+}
+
+#network-tag {
+    display:none;
+    margin-bottom:10px;
+    padding:5px 10px;
+    border-radius:5px;
+    font-weight:bold;
+    color:white;
+    text-align:center;
+    font-family:Verdana,sans-serif;
+}
+
+/* Pie wrapper */
+#pieChart-wrapper {
+    width: 100%;
+    position: relative;
+}
+
+#pieChart-wrapper::before {
+    content:"";
+    display:block;
+    padding-top:100%;
+}
+
+#pieChart {
+    position:absolute;
+    inset:0;
+}
+
+#pieChart svg {
+    width:100%;
+    height:100%;
+}
+
+/* ===== FILTER MENU ===== */
+#filter-menu {
+    order: 2;
+    flex: 0 0 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-container {
+    background: rgba(0,0,0,0.3);
+    border-radius: 15px;
+    padding: 15px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
+.network-column {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 10px;
+    border-radius: 12px;
+    background: rgba(0,0,0,0.3);
+}
+
+#filter-menu h4 {
+    margin:0;
+    font-size:0.9rem;
+    font-weight:bold;
+}
+
+.filter-instruction {
+    font-size:0.8rem;
+    color:#ccc;
+    margin:4px 0 8px 0;
+}
+
+#clear-filters {
+    width:100%;
+    margin-bottom:8px;
+}
+
+#lab-count {
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+.affiliation-item {
+    margin-bottom:6px;
+}
+
+.affiliation-item strong {
+    display:block;
+    margin-bottom:3px;
+}
+
+.affiliation-lab {
+    padding:2px 6px;
+    border-radius:4px;
+    font-size:0.85rem;
+    margin-bottom:2px;
+    display:inline-block;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:767px){
+    #main-content {
+        flex-direction: column;
+        align-items: center;
+        margin: 10px;
+    }
+    #filter-menu, #chart-container {
+        max-width: 100%;
+    }
+    #pieChart-wrapper {
+        min-height: 400px;
+    }
+    #filter-menu {
+        max-height: 400px;
+    }
+}
+</style>
+</head>
+
+<body data-page="networks">
+
+<div id="main-content">
+
+    <div id="chart-container">
+        <h3>Labs by Affiliation</h3>
+        <div id="network-tag"></div>
+        <div id="pieChart-wrapper">
+            <div id="pieChart"></div>
+        </div>
+    </div>
+
+    <div id="filter-menu">
+        <div class="filter-container">
+            <h4>Labs by Network</h4>
+            <p class="filter-instruction">Select a slice to filter the labs by network.</p>
+            <button id="clear-filters">Clear all filters</button>
+            <div id="lab-count">0 labs found</div>
+            <ul id="affiliation-list" class="network-column"></ul>
+        </div>
+    </div>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+d3.json("labsData.json").then(function(rawData) {
+
+    const affiliationMap = {};
+    rawData.forEach(d => {
+        const aff = d.affiliation || "Independent / No Network";
+        if (!affiliationMap[aff]) affiliationMap[aff] = [];
+        affiliationMap[aff].push({
+            lab: d.lab_name,
+            network: d.network || "Independent / No Affiliation",
+            affiliation: aff
+        });
+    });
+
+    const pieData = Object.entries(affiliationMap).map(([aff,labs]) => ({
+        affiliation: aff,
+        labs,
+        count: labs.length
+    }));
+
+    const affiliations = pieData.map(d => d.affiliation);
+    const colorScale = d3.scaleOrdinal()
+        .domain(affiliations)
+        .range(affiliations.map((d,i) => d3.interpolateRainbow(i / affiliations.length)));
+
+    const svg = d3.select("#pieChart")
+        .append("svg")
+        .attr("viewBox","-250 -250 500 500")
+        .attr("preserveAspectRatio","xMidYMid meet");
+
+    const g = svg.append("g");
+
+    const radius = 225;
+    const arc = d3.arc().innerRadius(radius*0.35).outerRadius(radius);
+    const arcOver = d3.arc().innerRadius(radius*0.35).outerRadius(radius*1.08);
+    const pie = d3.pie().value(d=>d.count).sort(null);
+
+    const allLabs = rawData.map(d => ({
+        lab: d.lab_name,
+        network: d.network || "Independent / No Affiliation",
+        affiliation: d.affiliation || "Independent / No Network"
+    }));
+
+    const networkTag = d3.select("#network-tag");
+    let prevSlice = null;
+
+    function renderList(labs){
+        const map = {};
+        labs.forEach(l=>{
+            map[l.network] ??= [];
+            map[l.network].push(l);
+        });
+
+        const ul = d3.select("#affiliation-list").html("");
+        Object.entries(map).forEach(([n,ls])=>{
+            const li = ul.append("li").attr("class","affiliation-item");
+            li.append("strong").text(n);
+            ls.forEach(l=>{
+                li.append("div")
+                  .attr("class","affiliation-lab")
+                  .style("background",colorScale(l.affiliation))
+                  .text(`- ${l.lab}`);
+            });
+        });
+
+        document.getElementById("lab-count").textContent = `${labs.length} labs found`;
+    }
+
+    renderList(allLabs);
+
+    function rotateToSlice(d, el){
+        const midAngle = (d.startAngle + d.endAngle)/2;
+        g.transition().duration(800).attr("transform",`rotate(${-midAngle*180/Math.PI})`);
+        if(prevSlice) d3.select(prevSlice).attr("d",arc);
+        prevSlice = el;
+        d3.select(el).attr("d",arcOver);
+        networkTag.style.display = "block";
+        networkTag.style.background = colorScale(d.data.affiliation);
+        networkTag.text(d.data.affiliation);
+        renderList(d.data.labs);
+    }
+
+    g.selectAll("path")
+        .data(pie(pieData))
+        .enter()
+        .append("path")
+        .attr("d", arc)
+        .attr("fill", d => colorScale(d.data.affiliation))
+        .style("cursor","pointer")
+        .on("click", function(e,d){ rotateToSlice(d,this); });
+
+    document.getElementById("clear-filters").onclick = () => {
+        g.transition().attr("transform","rotate(0)");
+        if(prevSlice) d3.select(prevSlice).attr("d",arc);
+        prevSlice=null;
+        networkTag.style.display="none";
+        renderList(allLabs);
+    };
+
+});
+});
+</script>
+
+</body>
+</html>
