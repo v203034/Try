@@ -284,6 +284,13 @@ header h2 {
     flex: 1;
 }
 
+/* Ecosystem: Allow natural height for full diagram display */
+body[data-page="ecosystem"] #visual-container {
+    height: auto;
+    min-height: 400px;
+    overflow: visible;
+}
+
 /* Desktop responsive layout - STANDARDIZED */
 @media (min-width: 768px) {
     #main-content {
@@ -311,6 +318,13 @@ header h2 {
     body[data-page="networks"] #filter-menu {
         width: 300px;
         flex: 0 0 300px;
+    }
+    
+    /* Ecosystem: Remove fixed height to allow full diagram display */
+    body[data-page="ecosystem"] #visual-container {
+        height: auto;
+        min-height: 600px;
+        overflow: visible;
     }
 }
 
