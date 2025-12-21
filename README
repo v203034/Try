@@ -1,85 +1,64 @@
-Interactive Data Visualisations for Master’s Thesis
+Interactive Data Visualisations for Valentina Melgar Bermúdez' Master's research. 
 Overview
 
-This page presents three interactive data visualisations created as part of my Master’s degree research. The visualisations are designed to explore and communicate patterns within the collected dataset through different visual perspectives.
+This page presents three interactive data visualizations created based on my Master’s degree research. The visualizations are designed to explore and communicate patterns within the collected dataset through different visual perspectives.
 
 The page consists of three screens:
 
-A map visualisation
-
-A Venn diagram
-
-A chart-based visualisation
+A map, geolocating Brazilian citizen labs;
+A Venn diagram, showing how the datasets ecosystem is composed;
+A pie chart, showing the different networks that compose the lab ecosystem as well.
 
 All visuals are dynamic and driven by structured data stored in attached JSON files.
 
 Navigation & External Links
 
 The page header includes direct links to:
-
-The full Master’s thesis, providing academic context and detailed methodology
-
-My Substack newsletter, where related ideas and research reflections are published
-
-My LinkedIn profile, for professional and academic background
+The full Master’s thesis (in Spanish), providing academic context and detailed methodology;
+My Substack newsletter, where related ideas and research reflections are published;
+My LinkedIn profile, for professional and academic background.
 
 These links are provided for reference, transparency, and further exploration of the research context.
 
-Visualisations Included
-1. Map
+Visualizations Included
 
-An interactive map displaying geographically referenced data from the dataset. Users can explore spatial relationships and distributions.
+1. Map
+An interactive map displaying geographically referenced data from the dataset. Users can explore lab distribution in Brazil.
 
 2. Venn Diagram
+A dynamic Venn diagram used to illustrate overlaps and relationships between key categories.
 
-A dynamic Venn diagram used to illustrate overlaps and relationships between key data categories.
-
-3. Chart
-
-A chart-based visualisation presenting quantitative comparisons and trends derived from the data.
+3. Pie Chart
+A chart-based visualization presenting network composition and institutional affiliations.
 
 Data
 
-All visualisations are generated from locally stored JSON files.
-
 The data was gathered and prepared specifically for this Master’s degree project.
-
 No external APIs are used; all data is loaded directly from the provided files.
 
 Assets & Credits
 
 Some visual assets and icons were sourced from pngtree.
-
 These assets are used for visual enhancement only and do not represent data.
 
 AI Assistance Disclosure
 
 The creation of this page was AI-assisted. AI tools were used to support aspects of development such as:
-
-Code generation and refinement
-
-Structuring visualisation logic
-
-General implementation guidance
+Code generation and refinement.
 
 All data collection, analytical decisions, and final design choices were made by the author.
 
 Purpose & Academic Context
 
 This project was developed as part of a Master’s degree and is intended for:
-
-Academic review
-
-Demonstration of data visualisation techniques
-
-Exploration of research data in an interactive format
-
+Academic review;
+Demonstration of data visualisation techniques;
+Exploration of research data in an interactive format;
 It is not intended for commercial use.
 
 Usage
-
-Open the page in a modern web browser. No additional setup is required, provided the JSON data files remain in their original locations.
+Open the page in a modern web browser. 
+No additional setup is required, provided the JSON data files remain in their original locations.
 
 Last Updated
-
-Month Year
+December 2025
