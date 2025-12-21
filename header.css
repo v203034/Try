@@ -300,6 +300,18 @@ header h2 {
         height: 600px;
         flex: 1;
     }
+    
+    /* Page-specific filter menu widths */
+    body[data-page="geolocation"] #filter-menu,
+    body[data-page="ecosystem"] #filter-menu {
+        width: 280px;
+        flex: 0 0 280px;
+    }
+    
+    body[data-page="networks"] #filter-menu {
+        width: 300px;
+        flex: 0 0 300px;
+    }
 }
 
 /* Mobile adjustments */
