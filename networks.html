@@ -22,14 +22,6 @@ body {
     flex-direction: row-reverse;
 }
 
-/* Networks-specific: Wider filter menu */
-@media (min-width: 768px) {
-    #filter-menu {
-        width: 300px;
-        flex: 0 0 300px;
-    }
-}
-
 /* Networks-specific: Pie chart container styling */
 #visual-container {
     display: flex;
@@ -39,11 +31,18 @@ body {
     padding: 20px;
 }
 
-/* Make container fill available space */
+/* Make container fill available space on desktop */
 @media (min-width: 768px) {
     #visual-container {
         flex: 1;
         min-height: 600px;
+    }
+}
+
+/* On mobile, let it size naturally */
+@media (max-width: 767px) {
+    #visual-container {
+        min-height: auto;
     }
 }
 
@@ -140,17 +139,25 @@ body {
 /* Mobile adjustments */
 @media (max-width: 767px) {
     #main-content {
-        flex-direction: column;
+        flex-direction: column !important;
         align-items: center;
     }
     
-    #pieChart-wrapper {
-        min-height: 300px;
+    #visual-container {
+        padding: 15px 10px;
     }
     
-    #filter-menu, #visual-container {
+    #pieChart-wrapper {
+        max-width: 400px;
+    }
+    
+    #filter-menu {
         width: 100%;
         max-width: 100%;
+    }
+    
+    #filter-menu #affiliation-list {
+        max-height: 300px;
     }
 }
 </style>
@@ -288,4 +295,4 @@ d3.json("labsData.json").then(function(rawData) {
 </script>
 
 </body>
-</html>
+</html
