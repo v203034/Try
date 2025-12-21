@@ -19,7 +19,7 @@ body {
     background-color: #808000;
 }
 
-/* Venn-specific: center the diagram and add key below */
+/* Venn-specific: center the diagram */
 #visual-container {
     display: flex;
     flex-direction: column;
@@ -48,6 +48,37 @@ body {
 #venn-diagram-svg-wrapper svg { 
     width: 100%; 
     height: auto; 
+}
+
+/* Tags section - spans full width below main-content */
+#tags-section {
+    margin: 0 20px 30px 20px;
+    padding: 15px 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+}
+
+#tags-section strong {
+    color: white;
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-family: 'Courier New', 'Lucida Console', Monaco, monospace;
+}
+
+#color-key-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+#color-key-container span {
+    padding: 6px 10px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 500;
 }
 
 /* Filter menu additions for this page */
@@ -117,6 +148,10 @@ body {
     #filter-menu #lab-list {
         max-height: 300px;
     }
+    
+    #tags-section {
+        margin: 0 15px 20px 15px;
+    }
 }
 </style>
 </head>
@@ -142,6 +177,11 @@ body {
       <div id="venn-diagram-svg-wrapper"></div>
    </div>
 
+</div>
+
+<div id="tags-section">
+    <strong>Tags:</strong>
+    <div id="color-key-container"></div>
 </div>
 
 <script>
