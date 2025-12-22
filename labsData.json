@@ -183,7 +183,7 @@
         "lab_name": "Centro de Integração Tecnológico (CITec)",
         "region": "Educacionales/Gubernamentales",
         "affiliation": "None",
-        "network": "Instituto Federal de Educación",
+        "network": "Instituto Federal de Educação",
         "categories": [
             "Educación superior/Gobierno federal"
         ]
@@ -984,7 +984,7 @@
         "lab_name": "Fablab Jundiaí",
         "region": "Gubernamentales",
         "affiliation": "None",
-        "network": "Prefectura Jundiaí",
+        "network": "Prefeitura Jundiaí",
         "categories": [
             "Gobierno local"
         ]
@@ -1038,7 +1038,7 @@
         "lab_name": "FABLAB UNIFAP (Garagemlab)",
         "region": "Educacionales",
         "affiliation": "None",
-        "network": "Centro Universitario Paraíso (UniFAP)",
+        "network": "Centro Universitário Paraíso (UniFAP)",
         "categories": [
             "Educación superior"
         ]
@@ -1206,10 +1206,10 @@
         ]
     },
     {
-        "lab_name": "LabHacker Cámara de los Diputados",
+        "lab_name": "LabHacker Câmara dos Deputados",
         "region": "Gubernamentales",
         "affiliation": "None",
-        "network": "Cámara de Diputados Federal",
+        "network": "Câmara dos Deputados",
         "categories": [
             "Gobierno federal"
         ]
@@ -1245,7 +1245,7 @@
         "lab_name": "LIFE Laboratório de Inovação e Fabricação Digital da Escola de Engenharia",
         "region": "Educacionales/Gubernamentales",
         "affiliation": "None",
-        "network": "Universidade Federal de Rio Grande do Sul (UFRGS)",
+        "network": "Universidade Federal do Rio Grande do Sul (UFRGS)",
         "categories": [
             "Educación superior/Gobierno federal"
         ]
@@ -1263,7 +1263,7 @@
         "lab_name": "MAPAS CULTURAIS",
         "region": "Gubernamentales",
         "affiliation": "None",
-        "network": "Ministerio de Cultura",
+        "network": "Ministério de Cultura",
         "categories": [
             "Gobierno federal"
         ]
@@ -1344,7 +1344,7 @@
         "lab_name": "POALAB",
         "region": "Educacionales/Gubernamentales",
         "affiliation": "None",
-        "network": "Instituto Federal de Educación",
+        "network": "Instituto Federal de Educação",
         "categories": [
             "Educación superior/Gobierno federal"
         ]
