@@ -263,16 +263,20 @@ function filterAndDisplayLabs(){
         return activeVennFilters.size === 0 || activeVennFilters.has(key);
     });
 
-    const visibleTags = new Set();
-    filteredLabs.forEach(lab => lab.categories.forEach(cat => visibleTags.add(cat)));
+    const tagCounts = {};
+    filteredLabs.forEach(lab => {
+        lab.categories.forEach(cat => {
+            tagCounts[cat] = (tagCounts[cat] || 0) + 1;
+        });
+    });
 
     const keyDiv = d3.select("#color-key-container").html("");
 
-    Array.from(visibleTags)
+    Object.keys(tagCounts)
       .sort((a, b) => (categoryLabelsEN[a] || a).localeCompare(categoryLabelsEN[b] || b))
       .forEach(tag => {
           keyDiv.append('span')
-                .text(categoryLabelsEN[tag] || tag)
+                .text(`${categoryLabelsEN[tag] || tag} (${tagCounts[tag]})`)
                 .style('background-color', categoryColors[tag] || '#000');
       });
 
